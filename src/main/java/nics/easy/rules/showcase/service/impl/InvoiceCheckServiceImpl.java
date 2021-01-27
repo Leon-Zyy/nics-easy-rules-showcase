@@ -2,8 +2,9 @@ package nics.easy.rules.showcase.service.impl;
 
 import com.jd.wms.nics.rules.api.AdvRules;
 import com.jd.wms.nics.rules.api.RulesEngine;
+import com.jd.wms.nics.rules.core.RulesEngineParameters;
 import lombok.extern.slf4j.Slf4j;
-import nics.easy.rules.showcase.data.Invoice;
+import nics.easy.rules.showcase.data.Order;
 import nics.easy.rules.showcase.rules.fact.EntryCheckFacts;
 import nics.easy.rules.showcase.rules.group.EntryInvoiceGroupRules;
 import nics.easy.rules.showcase.service.InvoiceCheckService;
@@ -31,13 +32,27 @@ public class InvoiceCheckServiceImpl implements InvoiceCheckService {
     @Resource
     private EntryInvoiceGroupRules entryInvoiceGroupRules;
 
+    /**
+     * 测试用例可以网上参考
+     * http://solverpeng.com/2019/10/29/%E8%A7%84%E5%88%99%E5%BC%95%E6%93%8E-easy-rules/
+     * @param order
+     */
     @Override
-    public void checkInvoice(Invoice invoice) {
+    public void checkInvoice(Order order) {
         EntryCheckFacts facts = new EntryCheckFacts();
-        facts.putInvoice(invoice);
-        //facts.putOrder(order);
+        facts.putInvoice(order.getInvoice());
+        facts.putOrder(order);
+
+        RulesEngineParameters rulesEngineParameters = new RulesEngineParameters().skipOnFirstAppliedRule(true);
 
         AdvRules advRules = entryInvoiceGroupRules.getRules();
-        this.getRulesEngine().fire(advRules, facts);
+        try {
+            rulesEngine.getParameters().skipOnFirstAppliedRule(true);
+            rulesEngine.fire(advRules, facts);
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        System.out.println("success");
     }
 }

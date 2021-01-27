@@ -17,4 +17,5 @@ public class Order {
 
     private String goodsName;
 
+    private Invoice invoice;
 }

@@ -1,6 +1,6 @@
 package nics.easy.rules.showcase.service;
 
-import nics.easy.rules.showcase.data.Invoice;
+import nics.easy.rules.showcase.data.Order;
 
 /**
  * @author Y.Y.Zhao
@@ -8,5 +8,5 @@ import nics.easy.rules.showcase.data.Invoice;
  */
 public interface InvoiceCheckService {
 
-    void checkInvoice(Invoice invoice);
+    void checkInvoice(Order order);
 }

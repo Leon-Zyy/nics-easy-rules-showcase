@@ -42,7 +42,7 @@ public class InvInfoIncompleteRule extends AbstractRule {
     }
 
     @Action
-    public void action(EntryCheckFacts facts)
+    public void action(EntryCheckFacts facts) throws Exception
     {
         String fieldName = facts.get(KEY_EMPTY_FIELD_NAME);
         log.error("字段'{}'值为空", fieldName);

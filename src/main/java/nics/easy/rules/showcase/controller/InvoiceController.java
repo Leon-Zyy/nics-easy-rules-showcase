@@ -3,7 +3,7 @@ package nics.easy.rules.showcase.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import nics.easy.rules.showcase.data.Invoice;
+import nics.easy.rules.showcase.data.Order;
 import nics.easy.rules.showcase.service.InvoiceCheckService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,9 +26,9 @@ public class InvoiceController {
 
     @PostMapping
     @ApiOperation(value = "校验发票", notes = "案例而已")
-    public void checkInvoice(@ApiParam(value="发票信息") @RequestBody Invoice invoice)
+    public void checkInvoice(@ApiParam(value="发票信息") @RequestBody Order order)
     {
-        this.invoiceCheckService.checkInvoice(invoice);
+        this.invoiceCheckService.checkInvoice(order);
     }
 
 }
